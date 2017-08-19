@@ -1,3 +1,4 @@
+﻿#已过时，请采用cmake来编译
 objs :=  head.o init.o serial.o main.o
 
 uboot++.bin: $(objs)

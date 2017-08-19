@@ -13,10 +13,10 @@ set(CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS "")
 SET(TARGET_APP uboot.elf)
 project(${TARGET_APP})
 
-AUX_SOURCE_DIRECTORY(. SRC)
+AUX_SOURCE_DIRECTORY(./src SRC)
 
 set(ASM_FILES 
-head.s
+src/head.s
 )
 
 set(SRC_LIST
