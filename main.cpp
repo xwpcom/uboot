@@ -18,6 +18,29 @@ void  wait(volatile unsigned long dly)
 	for(; dly > 0; dly--);
 }
 
+//todo:需要一个内存管理器
+//最简单的实现方法:选一块内存，只负责new,而delete什么都不做
+//仅供测试使用,2440开发板内存64MB,足够大了
+void *operator new(unsigned int bytes)
+{
+	static unsigned char *p= (unsigned char*)(0x30000000 + 1024 * 256);
+	unsigned char *addr = p;
+	p += bytes;
+
+	//align with 4
+	if ((bytes % 4))
+	{
+		p += (4-(bytes % 4));
+	}
+	
+	return addr;
+}
+
+void operator delete(void *p)
+{
+	//do nothing
+}
+
 class Base
 {
 public:
@@ -36,7 +59,7 @@ extern "C" int main()
 	
     uart0_init();   // 波特率115200，8N1(8个数据位，无校验位，1个停止位)
 
-	puts("\r\nHello from s3c2440,use cmake hisi c++ compiler\r\n");
+	puts("\r\nHello from s3c2440,use cmake hisi c++ compiler#1\r\n");
 /*
     while(1)
     {
@@ -55,7 +78,8 @@ extern "C" int main()
     //*/
 
 	{
-		Base b;
+		Base *b=new Base();
+		delete b;
 	}
 	
 	unsigned long i = 0;

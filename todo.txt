@@ -29,7 +29,15 @@ cmake部分成功
 /opt/hisi-linux/x86-arm/arm-hisiv300-linux/bin/arm-hisiv300-linux-uclibcgnueabi-objdump -D -m arm uboot++.elf > uboot++.dis
 
 
+head.s和.cpp可以在cmake中编译成功了,注意.s要小写
+主要改动
+enable_language( ASM-ATT)
+set(CMAKE_ASM-ATT_COMPILER ${COMPILER_CROSS}gcc)
+SET(CMAKE_ASM-ATT_COMPILER_ARG1 "-c")
+参考https://cmake.org/Wiki/CMake/Assembler
 
+/opt/hisi-linux/x86-arm/arm-hisiv300-linux/bin/arm-hisiv300-linux-uclibcgnueabi-objcopy -O binary -S uboot++ uboot++.bin
+/opt/hisi-linux/x86-arm/arm-hisiv300-linux/bin/arm-hisiv300-linux-uclibcgnueabi-objdump -D -m arm uboot++ > uboot++.dis
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 XiongWanPing 2017.08.19/////////////////////////////////////////////////////////////////////////

@@ -1,7 +1,7 @@
 objs :=  head.o init.o serial.o main.o
 
 uboot++.bin: $(objs)
-	/opt/hisi-linux/x86-arm/arm-hisiv300-linux/bin/arm-hisiv300-linux-uclibcgnueabi-ld -static -nostartfiles -nodefaultlibs -nostdlib -Tleds.lds -o uboot++.elf $^
+	/opt/hisi-linux/x86-arm/arm-hisiv300-linux/bin/arm-hisiv300-linux-uclibcgnueabi-ld -static -nostartfiles -nodefaultlibs -nostdlib -Tuboot.lds -o uboot++.elf $^
 	/opt/hisi-linux/x86-arm/arm-hisiv300-linux/bin/arm-hisiv300-linux-uclibcgnueabi-objcopy -O binary -S uboot++.elf $@
 	/opt/hisi-linux/x86-arm/arm-hisiv300-linux/bin/arm-hisiv300-linux-uclibcgnueabi-objdump -D -m arm uboot++.elf > uboot++.dis
 	
