@@ -6,8 +6,8 @@
 //参考 ttps://stackoverflow.com/questions/44210812/what-is-aeabi-unwind-cpp-pr1-and-how-can-i-avoid-it
 
 
-todo:
 .采用cmake
+//已解决
 参考 http://blog.163.com/hotman_x.vip/blog/static/48950133201652203818519/
 
 cmake中要明确启用汇率
@@ -42,4 +42,15 @@ SET(CMAKE_ASM-ATT_COMPILER_ARG1 "-c")
 ////////////////////////////////////////////////////////////////////////////////////////////////
 XiongWanPing 2017.08.19/////////////////////////////////////////////////////////////////////////
 采用s3c2440来学习硬件底层
+
+编译方法
+cd uboot/bin
+cmake ..
+make或make VERBOSE=1
+生成的文件在为uboot/uboot.bin,可用oflash烧录到板子运行
+注意约定在uboot/bin目录下编译，否则编译可能出错
+
+烧录
+由于在cfg.txt中已经配置了，所以在uboot目录中直接运行oflash即可烧录
+烧录后要断电重启(用的是JZ2440 v3板子，jtag线不需要断开)
 

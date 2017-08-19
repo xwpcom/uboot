@@ -10,7 +10,7 @@ set(CMAKE_SYSTEM_PROCESSOR arm)
 set(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")
 set(CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS "")
 
-SET(TARGET_APP uboot++)
+SET(TARGET_APP uboot.elf)
 project(${TARGET_APP})
 
 AUX_SOURCE_DIRECTORY(. SRC)
@@ -37,3 +37,11 @@ add_executable(${TARGET_APP}
 ${ASM_FILES}   #注意head.o要放在最前面,s3c2440上电后是从地址0开始执行的
 ${SRC_LIST}
 )
+
+add_custom_command(
+	OUTPUT uboot.bin 
+	POST_BUILD
+    COMMAND /opt/hisi-linux/x86-arm/arm-hisiv300-linux/bin/arm-hisiv300-linux-uclibcgnueabi-objcopy -O binary -S uboot.elf ../uboot.bin
+	DEPENDS ${TARGET_APP}
+	)
+add_custom_target(uboot ALL DEPENDS uboot.bin)
