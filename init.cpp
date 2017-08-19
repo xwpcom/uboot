@@ -4,10 +4,10 @@
 
 #include "s3c24xx.h"
  
-void disable_watch_dog(void);
-void clock_init(void);
-void memsetup(void);
-void copy_steppingstone_to_sdram(void);
+extern "C" void disable_watch_dog(void);
+extern "C" void clock_init(void);
+extern "C" void memsetup(void);
+extern "C" void copy_steppingstone_to_sdram(void);
 
 /*
  * 关闭WATCHDOG，否则CPU会不断重启
