@@ -36,7 +36,7 @@ extern "C" int main()
 	
     uart0_init();   // 波特率115200，8N1(8个数据位，无校验位，1个停止位)
 
-	puts("\r\nhello from s3c2440,use hisi c++ compiler#1\r\n");
+	puts("\r\nHello from s3c2440,use cmake hisi c++ compiler\r\n");
 /*
     while(1)
     {
